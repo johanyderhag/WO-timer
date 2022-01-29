@@ -1,5 +1,6 @@
 <script>
   import Button from "./Button.svelte";
+  import { onMount } from "svelte";
   let workDuration = 20;
   let restDuration = 10;
   let rounds = 5;
@@ -7,9 +8,23 @@
   let timerTime;
   let interval;
   let currentRound = 0;
-  const state = { idle: "idle", work: "work", rest: "rest", done: "done" };
+  let audio;
+
+  const state = {
+    idle: "idle",
+    work: "work",
+    rest: "rest",
+    done: "done",
+    countdown: "starting in 10s",
+  };
   let currentState = state.idle;
   let stateColor;
+
+  onMount(() => {
+    audio = document.createElement("audio");
+    audio.src = "/sound/countdown.wav";
+  });
+
   function startTimer() {
     setState(state.work, "green");
     currentRound += 1;
@@ -19,6 +34,7 @@
 
     interval = setInterval(() => {
       timer = convertMS(timerTime - 1);
+
       if (timerTime === 0) {
         if (currentRound === rounds) {
           setState(state.done);
@@ -51,6 +67,23 @@
     console.log("start rest");
   }
 
+  function tMinusTen() {
+    setState(state.countdown, "yellow");
+    timerTime = 10;
+    timer = convertMS(timerTime);
+
+    interval = setInterval(() => {
+      timer = convertMS(timerTime - 1);
+      timerTime -= 1;
+      if (timerTime === 4) {
+        audio.play();
+      }
+      if (timerTime === 0) {
+        startTimer();
+      }
+    }, 1000);
+  }
+
   function setState(newState, color) {
     clearInterval(interval);
     currentState = newState;
@@ -78,7 +111,7 @@
   <p>Tabata</p>
 </nav>
 <div class="container">
-  {#if currentState === state.work || currentState === state.rest || currentState === state.done}
+  {#if currentState != state.idle}
     <p class="info">Round {currentRound}/{rounds}</p>
 
     <p class="info" style="color: {stateColor};">{currentState}</p>
@@ -86,7 +119,7 @@
 
   {#if currentState === state.idle}
     <div>
-      <form on:submit|preventDefault={startTimer}>
+      <form on:submit|preventDefault={tMinusTen}>
         <div class="input-1">
           <label for="rounds">
             <span class="span-left">for</span>
@@ -127,7 +160,7 @@
       </form>
     </div>
   {/if}
-  {#if currentState === state.work || currentState === state.rest || currentState === state.done}
+  {#if currentState != state.idle}
     <p class="timer">
       {timer}
     </p>
@@ -146,11 +179,11 @@
     font-size: 2rem;
   }
   .info {
-    font-size: 10vw;
+    font-size: 10vh;
   }
 
   .timer {
-    font-size: 25vw;
+    font-size: 25vh;
   }
   form {
     width: 100%;

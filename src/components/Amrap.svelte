@@ -58,7 +58,7 @@
 
 <style>
   h1 {
-    font-size: 25vw;
+    font-size: 25vh;
   }
   nav {
     display: inline-flex;

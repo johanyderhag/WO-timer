@@ -136,6 +136,14 @@ var app = (function () {
     function set_current_component(component) {
         current_component = component;
     }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
     // TODO figure out if we still want to support
     // shorthand events, or if we want to implement
     // a real bubbling mechanism
@@ -609,11 +617,11 @@ var app = (function () {
     			t4 = text(/*clock*/ ctx[0]);
     			attr_dev(a, "href", "index.html");
     			add_location(a, file$5, 8, 2, 176);
-    			attr_dev(p, "class", "svelte-1x1klpr");
+    			attr_dev(p, "class", "svelte-scukl8");
     			add_location(p, file$5, 9, 2, 207);
-    			attr_dev(nav, "class", "svelte-1x1klpr");
+    			attr_dev(nav, "class", "svelte-scukl8");
     			add_location(nav, file$5, 7, 0, 167);
-    			attr_dev(h1, "class", "svelte-1x1klpr");
+    			attr_dev(h1, "class", "svelte-scukl8");
     			add_location(h1, file$5, 11, 0, 229);
     		},
     		l: function claim(nodes) {
@@ -701,7 +709,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$4 = "src\\components\\Tabata.svelte";
 
-    // (81:2) {#if currentState === state.work || currentState === state.rest || currentState === state.done}
+    // (114:2) {#if currentState != state.idle}
     function create_if_block_2$1(ctx) {
     	let p0;
     	let t0;
@@ -722,11 +730,11 @@ var app = (function () {
     			t4 = space();
     			p1 = element("p");
     			t5 = text(/*currentState*/ ctx[5]);
-    			attr_dev(p0, "class", "info svelte-v4cpqb");
-    			add_location(p0, file$4, 81, 4, 1939);
-    			attr_dev(p1, "class", "info svelte-v4cpqb");
+    			attr_dev(p0, "class", "info svelte-z99739");
+    			add_location(p0, file$4, 114, 4, 2479);
+    			attr_dev(p1, "class", "info svelte-z99739");
     			set_style(p1, "color", /*stateColor*/ ctx[6]);
-    			add_location(p1, file$4, 83, 4, 1996);
+    			add_location(p1, file$4, 116, 4, 2536);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -758,14 +766,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(81:2) {#if currentState === state.work || currentState === state.rest || currentState === state.done}",
+    		source: "(114:2) {#if currentState != state.idle}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (87:2) {#if currentState === state.idle}
+    // (120:2) {#if currentState === state.idle}
     function create_if_block_1$1(ctx) {
     	let div7;
     	let form;
@@ -849,62 +857,62 @@ var app = (function () {
     			t14 = space();
     			div6 = element("div");
     			create_component(button.$$.fragment);
-    			attr_dev(span0, "class", "span-left svelte-v4cpqb");
-    			add_location(span0, file$4, 91, 12, 2247);
+    			attr_dev(span0, "class", "span-left svelte-z99739");
+    			add_location(span0, file$4, 124, 12, 2786);
     			attr_dev(input0, "name", "rounds");
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "min", "1");
     			attr_dev(input0, "id", "rounds");
-    			attr_dev(input0, "class", "svelte-v4cpqb");
-    			add_location(input0, file$4, 93, 14, 2334);
+    			attr_dev(input0, "class", "svelte-z99739");
+    			add_location(input0, file$4, 126, 14, 2873);
     			attr_dev(div0, "class", "input-div");
-    			add_location(div0, file$4, 92, 12, 2295);
-    			attr_dev(span1, "class", "span-right svelte-v4cpqb");
-    			add_location(span1, file$4, 95, 12, 2445);
+    			add_location(div0, file$4, 125, 12, 2834);
+    			attr_dev(span1, "class", "span-right svelte-z99739");
+    			add_location(span1, file$4, 128, 12, 2984);
     			attr_dev(label0, "for", "rounds");
-    			attr_dev(label0, "class", "svelte-v4cpqb");
-    			add_location(label0, file$4, 90, 10, 2213);
-    			attr_dev(div1, "class", "input-1 svelte-v4cpqb");
-    			add_location(div1, file$4, 89, 8, 2180);
-    			attr_dev(span2, "class", "span-left svelte-v4cpqb");
-    			add_location(span2, file$4, 102, 13, 2681);
+    			attr_dev(label0, "class", "svelte-z99739");
+    			add_location(label0, file$4, 123, 10, 2752);
+    			attr_dev(div1, "class", "input-1 svelte-z99739");
+    			add_location(div1, file$4, 122, 8, 2719);
+    			attr_dev(span2, "class", "span-left svelte-z99739");
+    			add_location(span2, file$4, 135, 13, 3220);
     			attr_dev(input1, "name", "work");
     			attr_dev(input1, "type", "number");
     			attr_dev(input1, "min", "1");
     			attr_dev(input1, "id", "work");
-    			attr_dev(input1, "class", "svelte-v4cpqb");
-    			add_location(input1, file$4, 104, 14, 2769);
+    			attr_dev(input1, "class", "svelte-z99739");
+    			add_location(input1, file$4, 137, 14, 3308);
     			attr_dev(div2, "class", "input-div");
-    			add_location(div2, file$4, 103, 12, 2730);
-    			attr_dev(span3, "class", "span-right svelte-v4cpqb");
-    			add_location(span3, file$4, 106, 12, 2882);
+    			add_location(div2, file$4, 136, 12, 3269);
+    			attr_dev(span3, "class", "span-right svelte-z99739");
+    			add_location(span3, file$4, 139, 12, 3421);
     			attr_dev(label1, "for", "work");
-    			attr_dev(label1, "class", "svelte-v4cpqb");
-    			add_location(label1, file$4, 101, 10, 2649);
-    			attr_dev(div3, "class", "input-2 svelte-v4cpqb");
-    			add_location(div3, file$4, 100, 8, 2616);
-    			attr_dev(span4, "class", "span-left svelte-v4cpqb");
-    			add_location(span4, file$4, 113, 12, 3125);
+    			attr_dev(label1, "class", "svelte-z99739");
+    			add_location(label1, file$4, 134, 10, 3188);
+    			attr_dev(div3, "class", "input-2 svelte-z99739");
+    			add_location(div3, file$4, 133, 8, 3155);
+    			attr_dev(span4, "class", "span-left svelte-z99739");
+    			add_location(span4, file$4, 146, 12, 3664);
     			attr_dev(input2, "name", "rest");
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "min", "1");
     			attr_dev(input2, "id", "rest");
-    			attr_dev(input2, "class", "svelte-v4cpqb");
-    			add_location(input2, file$4, 115, 14, 3213);
+    			attr_dev(input2, "class", "svelte-z99739");
+    			add_location(input2, file$4, 148, 14, 3752);
     			attr_dev(div4, "class", "input-div");
-    			add_location(div4, file$4, 114, 12, 3174);
-    			attr_dev(span5, "class", "span-right svelte-v4cpqb");
-    			add_location(span5, file$4, 117, 12, 3326);
+    			add_location(div4, file$4, 147, 12, 3713);
+    			attr_dev(span5, "class", "span-right svelte-z99739");
+    			add_location(span5, file$4, 150, 12, 3865);
     			attr_dev(label2, "for", "rest");
-    			attr_dev(label2, "class", "svelte-v4cpqb");
-    			add_location(label2, file$4, 112, 10, 3093);
-    			attr_dev(div5, "class", "input-3 svelte-v4cpqb");
-    			add_location(div5, file$4, 111, 8, 3060);
-    			attr_dev(div6, "class", "input-4 svelte-v4cpqb");
-    			add_location(div6, file$4, 123, 8, 3559);
-    			attr_dev(form, "class", "svelte-v4cpqb");
-    			add_location(form, file$4, 88, 6, 2126);
-    			add_location(div7, file$4, 87, 4, 2113);
+    			attr_dev(label2, "class", "svelte-z99739");
+    			add_location(label2, file$4, 145, 10, 3632);
+    			attr_dev(div5, "class", "input-3 svelte-z99739");
+    			add_location(div5, file$4, 144, 8, 3599);
+    			attr_dev(div6, "class", "input-4 svelte-z99739");
+    			add_location(div6, file$4, 156, 8, 4098);
+    			attr_dev(form, "class", "svelte-z99739");
+    			add_location(form, file$4, 121, 6, 2666);
+    			add_location(div7, file$4, 120, 4, 2653);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div7, anchor);
@@ -948,7 +956,7 @@ var app = (function () {
     					listen_dev(input0, "input", /*input0_input_handler*/ ctx[9]),
     					listen_dev(input1, "input", /*input1_input_handler*/ ctx[10]),
     					listen_dev(input2, "input", /*input2_input_handler*/ ctx[11]),
-    					listen_dev(form, "submit", prevent_default(/*startTimer*/ ctx[8]), false, true, false)
+    					listen_dev(form, "submit", prevent_default(/*tMinusTen*/ ctx[8]), false, true, false)
     				];
 
     				mounted = true;
@@ -969,7 +977,7 @@ var app = (function () {
 
     			const button_changes = {};
 
-    			if (dirty & /*$$scope*/ 65536) {
+    			if (dirty & /*$$scope*/ 262144) {
     				button_changes.$$scope = { dirty, ctx };
     			}
 
@@ -996,14 +1004,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(87:2) {#if currentState === state.idle}",
+    		source: "(120:2) {#if currentState === state.idle}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (125:10) <Button>
+    // (158:10) <Button>
     function create_default_slot$2(ctx) {
     	let t;
 
@@ -1023,14 +1031,14 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(125:10) <Button>",
+    		source: "(158:10) <Button>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (130:2) {#if currentState === state.work || currentState === state.rest || currentState === state.done}
+    // (163:2) {#if currentState != state.idle}
     function create_if_block$1(ctx) {
     	let p;
     	let t;
@@ -1039,8 +1047,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(/*timer*/ ctx[3]);
-    			attr_dev(p, "class", "timer svelte-v4cpqb");
-    			add_location(p, file$4, 130, 4, 3771);
+    			attr_dev(p, "class", "timer svelte-z99739");
+    			add_location(p, file$4, 163, 4, 4247);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1058,7 +1066,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(130:2) {#if currentState === state.work || currentState === state.rest || currentState === state.done}",
+    		source: "(163:2) {#if currentState != state.idle}",
     		ctx
     	});
 
@@ -1075,9 +1083,9 @@ var app = (function () {
     	let t4;
     	let t5;
     	let current;
-    	let if_block0 = (/*currentState*/ ctx[5] === /*state*/ ctx[7].work || /*currentState*/ ctx[5] === /*state*/ ctx[7].rest || /*currentState*/ ctx[5] === /*state*/ ctx[7].done) && create_if_block_2$1(ctx);
+    	let if_block0 = /*currentState*/ ctx[5] != /*state*/ ctx[7].idle && create_if_block_2$1(ctx);
     	let if_block1 = /*currentState*/ ctx[5] === /*state*/ ctx[7].idle && create_if_block_1$1(ctx);
-    	let if_block2 = (/*currentState*/ ctx[5] === /*state*/ ctx[7].work || /*currentState*/ ctx[5] === /*state*/ ctx[7].rest || /*currentState*/ ctx[5] === /*state*/ ctx[7].done) && create_if_block$1(ctx);
+    	let if_block2 = /*currentState*/ ctx[5] != /*state*/ ctx[7].idle && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -1095,13 +1103,13 @@ var app = (function () {
     			t5 = space();
     			if (if_block2) if_block2.c();
     			attr_dev(a, "href", "index.html");
-    			add_location(a, file$4, 76, 2, 1757);
-    			attr_dev(p, "class", "svelte-v4cpqb");
-    			add_location(p, file$4, 77, 2, 1788);
-    			attr_dev(nav, "class", "svelte-v4cpqb");
-    			add_location(nav, file$4, 75, 0, 1748);
-    			attr_dev(div, "class", "container svelte-v4cpqb");
-    			add_location(div, file$4, 79, 0, 1811);
+    			add_location(a, file$4, 109, 2, 2360);
+    			attr_dev(p, "class", "svelte-z99739");
+    			add_location(p, file$4, 110, 2, 2391);
+    			attr_dev(nav, "class", "svelte-z99739");
+    			add_location(nav, file$4, 108, 0, 2351);
+    			attr_dev(div, "class", "container svelte-z99739");
+    			add_location(div, file$4, 112, 0, 2414);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1121,7 +1129,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*currentState*/ ctx[5] === /*state*/ ctx[7].work || /*currentState*/ ctx[5] === /*state*/ ctx[7].rest || /*currentState*/ ctx[5] === /*state*/ ctx[7].done) {
+    			if (/*currentState*/ ctx[5] != /*state*/ ctx[7].idle) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
@@ -1157,7 +1165,7 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (/*currentState*/ ctx[5] === /*state*/ ctx[7].work || /*currentState*/ ctx[5] === /*state*/ ctx[7].rest || /*currentState*/ ctx[5] === /*state*/ ctx[7].done) {
+    			if (/*currentState*/ ctx[5] != /*state*/ ctx[7].idle) {
     				if (if_block2) {
     					if_block2.p(ctx, dirty);
     				} else {
@@ -1226,16 +1234,23 @@ var app = (function () {
     	let timerTime;
     	let interval;
     	let currentRound = 0;
+    	let audio;
 
     	const state = {
     		idle: "idle",
     		work: "work",
     		rest: "rest",
-    		done: "done"
+    		done: "done",
+    		countdown: "starting in 10s"
     	};
 
     	let currentState = state.idle;
     	let stateColor;
+
+    	onMount(() => {
+    		audio = document.createElement("audio");
+    		audio.src = "/sound/countdown.wav";
+    	});
 
     	function startTimer() {
     		setState(state.work, "green");
@@ -1287,6 +1302,28 @@ var app = (function () {
     		console.log("start rest");
     	}
 
+    	function tMinusTen() {
+    		setState(state.countdown, "yellow");
+    		timerTime = 10;
+    		$$invalidate(3, timer = convertMS$1(timerTime));
+
+    		interval = setInterval(
+    			() => {
+    				$$invalidate(3, timer = convertMS$1(timerTime - 1));
+    				timerTime -= 1;
+
+    				if (timerTime === 4) {
+    					audio.play();
+    				}
+
+    				if (timerTime === 0) {
+    					startTimer();
+    				}
+    			},
+    			1000
+    		);
+    	}
+
     	function setState(newState, color) {
     		clearInterval(interval);
     		$$invalidate(5, currentState = newState);
@@ -1316,6 +1353,7 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		Button,
+    		onMount,
     		workDuration,
     		restDuration,
     		rounds,
@@ -1323,11 +1361,13 @@ var app = (function () {
     		timerTime,
     		interval,
     		currentRound,
+    		audio,
     		state,
     		currentState,
     		stateColor,
     		startTimer,
     		startRest,
+    		tMinusTen,
     		setState,
     		convertMS: convertMS$1
     	});
@@ -1340,6 +1380,7 @@ var app = (function () {
     		if ('timerTime' in $$props) timerTime = $$props.timerTime;
     		if ('interval' in $$props) interval = $$props.interval;
     		if ('currentRound' in $$props) $$invalidate(4, currentRound = $$props.currentRound);
+    		if ('audio' in $$props) audio = $$props.audio;
     		if ('currentState' in $$props) $$invalidate(5, currentState = $$props.currentState);
     		if ('stateColor' in $$props) $$invalidate(6, stateColor = $$props.stateColor);
     	};
@@ -1357,7 +1398,7 @@ var app = (function () {
     		currentState,
     		stateColor,
     		state,
-    		startTimer,
+    		tMinusTen,
     		input0_input_handler,
     		input1_input_handler,
     		input2_input_handler
@@ -1619,26 +1660,26 @@ var app = (function () {
     			t9 = text(/*timer*/ ctx[1]);
     			attr_dev(a, "href", "index.html");
     			add_location(a, file$1, 45, 2, 1034);
-    			attr_dev(p, "class", "svelte-mg5twm");
+    			attr_dev(p, "class", "svelte-je9x79");
     			add_location(p, file$1, 46, 2, 1065);
-    			attr_dev(nav, "class", "svelte-mg5twm");
+    			attr_dev(nav, "class", "svelte-je9x79");
     			add_location(nav, file$1, 44, 0, 1025);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "min", "1");
-    			attr_dev(input0, "class", "svelte-mg5twm");
+    			attr_dev(input0, "class", "svelte-je9x79");
     			add_location(input0, file$1, 50, 22, 1184);
     			attr_dev(label, "for", "");
-    			attr_dev(label, "class", "svelte-mg5twm");
+    			attr_dev(label, "class", "svelte-je9x79");
     			add_location(label, file$1, 50, 4, 1166);
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "1");
-    			attr_dev(input1, "class", "range svelte-mg5twm");
+    			attr_dev(input1, "class", "range svelte-je9x79");
     			add_location(input1, file$1, 51, 4, 1259);
-    			attr_dev(form, "class", "svelte-mg5twm");
+    			attr_dev(form, "class", "svelte-je9x79");
     			add_location(form, file$1, 49, 2, 1114);
-    			attr_dev(h1, "class", "svelte-mg5twm");
+    			attr_dev(h1, "class", "svelte-je9x79");
     			add_location(h1, file$1, 55, 2, 1388);
-    			attr_dev(div, "class", "container svelte-mg5twm");
+    			attr_dev(div, "class", "container svelte-je9x79");
     			add_location(div, file$1, 48, 0, 1087);
     		},
     		l: function claim(nodes) {
