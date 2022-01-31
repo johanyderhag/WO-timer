@@ -189,7 +189,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 200px 1fr;
-    grid-template-rows: 50px 50px 50px 100px;
+    grid-template-rows: 50px 50px 50px 50px;
     row-gap: 50px;
   }
   .input-1 {
